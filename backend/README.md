@@ -4,13 +4,31 @@
 
 ## Quick Start
 
+### Option 1: Docker (Recommended for Assessment)
+
 ```bash
-# 1. Start Postgres + Redis
-docker-compose up -d   # run from the project root (one level up)
+# Run everything with one command
+docker compose up
+```
+
+This will:
+- Start PostgreSQL and Redis containers
+- Run database migrations automatically
+- Seed demo data
+- Start the NestJS server on port 4000
+
+Then access:
+- **API** → http://localhost:4000/api/v1
+- **Swagger Docs** → http://localhost:4000/api/docs
+
+### Option 2: Local Development
+
+```bash
+# 1. Start database and cache services
+docker compose up -d db redis
 
 # 2. Set up environment
 cp .env.example .env
-# Edit .env — fill in DATABASE_URL, JWT secrets, OPENAI_API_KEY
 
 # 3. Install dependencies
 npm install
@@ -25,9 +43,6 @@ npm run prisma:seed
 # 6. Start in dev mode (hot reload)
 npm run start:dev
 ```
-
-**API** → http://localhost:4000/api/v1  
-**Swagger** → http://localhost:4000/api/docs
 
 ---
 
